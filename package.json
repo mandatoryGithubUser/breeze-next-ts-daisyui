@@ -18,13 +18,13 @@
     "swr": "^2.3.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.25.9",
-    "@babel/preset-react": "^7.26.3",
     "@next/eslint-plugin-next": "^15.1.4",
     "@tailwindcss/forms": "^0.5.10",
     "@types/node": "22.10.5",
     "@types/react": "19.0.4",
     "@types/react-dom": "^19.0.2",
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "@typescript-eslint/parser": "^8.19.1",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.17.0",
     "eslint-config-next": "^15.1.4",

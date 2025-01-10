@@ -1,6 +1,7 @@
 module.exports = {
     root: true,
-    parser: '@babel/eslint-parser',
+    parser: '@typescript-eslint/parser',
+    plugins: ['@typescript-eslint'],
     settings: {
         react: {
             version: 'detect',
@@ -17,6 +18,8 @@ module.exports = {
         'plugin:react/recommended',
         'plugin:@next/next/recommended',
         'prettier',
+        'plugin:@typescript-eslint/strict',
+        'plugin:@typescript-eslint/stylistic',
     ],
     parserOptions: {
         ecmaFeatures: {
@@ -24,9 +27,6 @@ module.exports = {
         },
         ecmaVersion: 2020,
         requireConfigFile: false,
-        babelOptions: {
-            presets: ['@babel/preset-react'],
-        },
     },
     rules: {
         'import/prefer-default-export': 0,
