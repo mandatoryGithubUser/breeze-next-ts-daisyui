@@ -37,8 +37,9 @@ const Login = () => {
     useEffect(() => {
         if (
             // @ts-expect-error What is this router reset?
-            (router.reset?.length > 0 && !errors) ||
-            (errors.email.length <= 0 && errors.password.length <= 0)
+            router.reset?.length > 0 &&
+            errors.email.length <= 0 &&
+            errors.password.length <= 0
         ) {
             // @ts-expect-error Router reset doesnt matter
             setStatus(atob(router.reset))
