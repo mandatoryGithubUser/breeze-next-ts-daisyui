@@ -10,6 +10,13 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import AuthSessionStatus from '@/app/(auth)/AuthSessionStatus'
 
+//#region Types
+interface LoginErrorType {
+    email: string[]
+    password: string[]
+}
+//#endregion Types
+
 const Login = () => {
     const router = useRouter()
 
@@ -21,7 +28,10 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [shouldRemember, setShouldRemember] = useState(false)
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState<LoginErrorType>({
+        email: [],
+        password: [],
+    })
     const [status, setStatus] = useState(null)
 
     useEffect(() => {
@@ -79,10 +89,7 @@ const Login = () => {
                         autoComplete="current-password"
                     />
 
-                    <InputError
-                        messages={errors.password}
-                        className="mt-2"
-                    />
+                    <InputError messages={errors.password} className="mt-2" />
                 </div>
 
                 {/* Remember Me */}

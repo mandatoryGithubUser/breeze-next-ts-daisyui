@@ -8,6 +8,15 @@ import Link from 'next/link'
 import { useAuth } from '@/hooks/auth'
 import { useState } from 'react'
 
+//#region Types
+interface RegisterErrorType {
+    name: string[]
+    email: string[]
+    password: string[]
+    password_confirmation: string[]
+}
+//#endregion Types
+
 const Page = () => {
     const { register } = useAuth({
         middleware: 'guest',
@@ -18,7 +27,12 @@ const Page = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState<RegisterErrorType>({
+        name: [],
+        email: [],
+        password: [],
+        password_confirmation: [],
+    })
 
     const submitForm = event => {
         event.preventDefault()
@@ -86,9 +100,7 @@ const Page = () => {
 
             {/* Confirm Password */}
             <div className="mt-4">
-                <Label htmlFor="passwordConfirmation">
-                    Confirm Password
-                </Label>
+                <Label htmlFor="passwordConfirmation">Confirm Password</Label>
 
                 <Input
                     id="passwordConfirmation"

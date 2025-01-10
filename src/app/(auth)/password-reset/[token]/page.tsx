@@ -9,6 +9,14 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import AuthSessionStatus from '@/app/(auth)/AuthSessionStatus'
 
+//#region Types
+interface ResetPasswordErrorType {
+    email: string[]
+    password: string[]
+    password_confirmation: string[]
+}
+//#endregion Types
+
 const PasswordReset = () => {
     const searchParams = useSearchParams()
 
@@ -17,7 +25,11 @@ const PasswordReset = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState<ResetPasswordErrorType>({
+        email: [],
+        password: [],
+        password_confirmation: [],
+    })
     const [status, setStatus] = useState(null)
 
     const submitForm = event => {
@@ -71,10 +83,7 @@ const PasswordReset = () => {
                         required
                     />
 
-                    <InputError
-                        messages={errors.password}
-                        className="mt-2"
-                    />
+                    <InputError messages={errors.password} className="mt-2" />
                 </div>
 
                 {/* Confirm Password */}
