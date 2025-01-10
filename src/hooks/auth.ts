@@ -3,11 +3,26 @@ import axios from '@/lib/axios'
 import { useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 
-export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
+//#region Types
+interface Props {
+    middleware: 'guest' | 'auth'
+    redirectIfAuthenticated?: string
+}
+//#endregion Types
+
+export const useAuth = (
+    { middleware, redirectIfAuthenticated }: Props = {
+        middleware: 'guest',
+    },
+) => {
     const router = useRouter()
     const params = useParams()
 
-    const { data: user, error, mutate } = useSWR('/api/user', () =>
+    const {
+        data: user,
+        error,
+        mutate,
+    } = useSWR('/api/user', () =>
         axios
             .get('/api/user')
             .then(res => res.data)
@@ -105,7 +120,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 
         if (middleware === 'auth' && !user?.email_verified_at)
             router.push('/verify-email')
-        
+
         if (
             window.location.pathname === '/verify-email' &&
             user?.email_verified_at
