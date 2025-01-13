@@ -8,9 +8,7 @@ interface Props extends ComponentProps<'label'> {
 //#endregion Props
 
 const Label = ({ className, children, ...props }: Props) => (
-    <label
-        className={`${className} block font-medium text-sm text-gray-700`}
-        {...props}>
+    <label className={`${className} block font-medium text-sm`} {...props}>
         {children}
     </label>
 )
