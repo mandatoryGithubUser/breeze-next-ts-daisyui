@@ -1,5 +1,6 @@
 import daisyui from 'daisyui'
 import forms from '@tailwindcss/forms'
+import typeography from '@tailwindcss/typography'
 
 module.exports = {
     content: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -7,5 +8,5 @@ module.exports = {
     daisyui: {
         themes: ['light', 'dark'],
     },
-    plugins: [forms, daisyui],
+    plugins: [forms, typeography, daisyui],
 }
